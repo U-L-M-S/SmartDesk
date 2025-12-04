@@ -1,0 +1,34 @@
+<?php
+
+namespace Modules\Documents\Models;
+
+use App\Models\User;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class DocumentShare extends Model
+{
+    use HasFactory;
+
+    protected $fillable = [
+        'document_id',
+        'user_id',
+        'permission',
+        'shared_by',
+    ];
+
+    public function document()
+    {
+        return $this->belongsTo(Document::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function sharedBy()
+    {
+        return $this->belongsTo(User::class, 'shared_by');
+    }
+}
