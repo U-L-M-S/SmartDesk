@@ -9,7 +9,7 @@ use Modules\Notifications\Controllers\SystemNotificationController;
 
 Route::get('/', function () {
     return view('dashboard');
-})->name('dashboard')->middleware(['auth']);
+})->name('dashboard');
 
 // Authentication routes (Laravel Breeze or similar would typically handle these)
 Route::middleware(['auth'])->group(function () {

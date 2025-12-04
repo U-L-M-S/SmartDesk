@@ -40,6 +40,16 @@ echo Running migrations and seeders...
 docker-compose exec app php artisan migrate --seed
 
 echo.
+echo Fixing storage permissions...
+docker-compose exec app chmod -R 775 storage bootstrap/cache
+docker-compose exec app chown -R www-data:www-data storage bootstrap/cache
+
+echo.
+echo Clearing caches...
+docker-compose exec app php artisan config:clear
+docker-compose exec app php artisan cache:clear
+
+echo.
 echo.
 echo ========================================
 echo SmartDesk setup complete!
